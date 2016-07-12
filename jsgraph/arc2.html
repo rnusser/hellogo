@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Arc</title>
+        <script src="raphael.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+
+  var paper = Raphael(20, 20, 320, 320);
+
+  function arc(center, radius, startAngle, endAngle) {
+      angle = startAngle;
+      coords = toCoords(center, radius, angle);
+      path = "M " + coords[0] + " " + coords[1];
+      while(angle<=endAngle) {
+          coords = toCoords(center, radius, angle);
+          path += " L " + coords[0] + " " + coords[1];
+          angle += 1;
+      }
+      return path;
+  }
+
+  function toCoords(center, radius, angle) {
+      var radians = (angle/180) * Math.PI;
+      var x = center[0] + Math.cos(radians) * radius;
+      var y = center[1] + Math.sin(radians) * radius;
+      return [x, y];
+  }
+
+  paper.path(arc([100, 100], 80, 0, 270));  // draw an arc 
+                                            // centered at (100, 100),
+                                            // radius 80, starting at degree 0,
+                                            // beginning at coordinate (80, 0)
+                                            //   which is relative to the center
+                                            //   of the circle,
+                                            // going clockwise, until 270 degree
+
+
+        </script>
+
+
+    </head>
+    <body>
+    </body>
+</html>
+
